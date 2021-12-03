@@ -40,6 +40,15 @@ function love.draw()
     -- clear the screen with specific color (R,G,B,Transparency)
     love.graphics.clear(40 / 255, 45 / 255, 52 / 255, 255 / 255)
 
+    love.graphics.printf('Hello Pong!', 0, 20, VIRTUAL_WIDTH, 'center')
+    --[[
+        Hello Pong!',          -- text
+        0,                      -- starting X (0 since we're going to center it based on width)
+        WINDOW_HEIGHT / 2 - 6,  -- starting Y (halfway down the screen)
+        WINDOW_WIDTH,           -- number of pixels to center within (the entire screen here)
+        'center')               -- alignment mode, can be 'center', 'left', or 'right'
+    ]]
+
     -- render first paddle (left side) 
     -- (fill,x,y,width,height)
     love.graphics.rectangle('fill', 10, 30, 5, 20)
@@ -52,14 +61,6 @@ function love.draw()
     -- (fill,x,y,width,height)
     love.graphics.rectangle('fill', VIRTUAL_WIDTH / 2 - 2, VIRTUAL_HEIGHT / 2 - 2, 4, 4)
 
-    love.graphics.printf('Hello Pong', 0, WINDOW_HEIGHT / 2 - 6, WINDOW_WIDTH, 'center')
-    --[[
-        Hello Pong!',          -- text
-        0,                      -- starting X (0 since we're going to center it based on width)
-        WINDOW_HEIGHT / 2 - 6,  -- starting Y (halfway down the screen)
-        WINDOW_WIDTH,           -- number of pixels to center within (the entire screen here)
-        'center')               -- alignment mode, can be 'center', 'left', or 'right'
-    ]]
     -- end rendering
     push:apply('end')
 end
