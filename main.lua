@@ -1,6 +1,6 @@
 push = require 'push'
 
-WINDOW_HEIGHT = 721
+WINDOW_HEIGHT = 720
 WINDOW_WIDTH = 1280
 
 VIRTUAL_HEIGHT = 243
@@ -13,7 +13,11 @@ function love.load()
     -- and graphics; try removing this function to see the difference!
     love.graphics.setDefaultFilter('nearest', 'nearest')
 
-    push:setupScreen(VIRTUAL_WIDTH, VIRTUAL_HEIGHT, WINDOW_WIDTH, WINDOW_HEIGHT {
+    smallFont = love.graphics.newFont('font.ttf', 8)
+
+    love.graphics.setFont(smallFont)
+
+    push:setupScreen(VIRTUAL_WIDTH, VIRTUAL_HEIGHT, WINDOW_WIDTH, WINDOW_HEIGHT, {
 
         fullcreen = false,
         resizable = false,
@@ -32,6 +36,21 @@ end
 function love.draw()
     -- begin rendering
     push:apply('start')
+
+    -- clear the screen with specific color (R,G,B,Transparency)
+    love.graphics.clear(40 / 255, 45 / 255, 52 / 255, 255 / 255)
+
+    -- render first paddle (left side) 
+    -- (fill,x,y,width,height)
+    love.graphics.rectangle('fill', 10, 30, 5, 20)
+
+    -- render second paddle (right side)
+    -- (fill,x,y,width,height)
+    love.graphics.rectangle('fill', VIRTUAL_WIDTH - 10, VIRTUAL_HEIGHT - 50, 5, 20)
+
+    -- render ball (center)
+    -- (fill,x,y,width,height)
+    love.graphics.rectangle('fill', VIRTUAL_WIDTH / 2 - 2, VIRTUAL_HEIGHT / 2 - 2, 4, 4)
 
     love.graphics.printf('Hello Pong', 0, WINDOW_HEIGHT / 2 - 6, WINDOW_WIDTH, 'center')
     --[[
