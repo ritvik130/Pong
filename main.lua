@@ -16,6 +16,10 @@ function love.load()
     -- and graphics; try removing this function to see the difference!
     love.graphics.setDefaultFilter('nearest', 'nearest')
 
+    -- "seed" the RNG so that calls to random are always random
+    -- use the current time, since that will vary on startup every time
+    math.randomseed(os.time())
+
     -- more retro looking font 
     smallFont = love.graphics.newFont('font.ttf', 8)
 
@@ -54,6 +58,7 @@ function love.update(dt)
         -- love.keyBoard.isDown() returns true if the key is keyPressed
         -- add negative paddle speed to current Y scaled by deltaTime
         player1Y = player1Y + -PADDLE_SPEED * dt
+        print('cbdjbcu')
 
     elseif love.keyboard.isDown('s') then
         -- add positive paddle speed to current Y scaled by deltaTime
@@ -103,11 +108,11 @@ function love.draw()
 
     -- render first paddle (left side) 
     -- (fill,x,y,width,height)
-    love.graphics.rectangle('fill', 10, 30, 5, 20)
+    love.graphics.rectangle('fill', 10, player1Y, 5, 20)
 
     -- render second paddle (right side)
     -- (fill,x,y,width,height)
-    love.graphics.rectangle('fill', VIRTUAL_WIDTH - 10, VIRTUAL_HEIGHT - 50, 5, 20)
+    love.graphics.rectangle('fill', VIRTUAL_WIDTH - 10, player2Y, 5, 20)
 
     -- render ball (center)
     -- (fill,x,y,width,height)
